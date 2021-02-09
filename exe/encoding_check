@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'extensions/string/encoding_check/cli'
+
+Extensions::String::EncodingCheck::CLI.start
