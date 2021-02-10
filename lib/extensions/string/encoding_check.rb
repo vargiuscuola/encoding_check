@@ -6,7 +6,6 @@ module Extensions
   module String
     # EncodingCheck
     module EncodingCheck
-
       PRIORITY_ENCODINGS = [Encoding::ISO_8859_1].freeze
       DEFAULT_ENCODING = Encoding::UTF_8
 
@@ -23,7 +22,8 @@ module Extensions
       # the encoding detected by the `rchardet19` library.
       #
       # @param [Array<Encoding, String>] try_encodings (optional)
-      #   The encodings to try if the string doesn't have a valid encoding, before resort to the detection of `rchardet19` library
+      #   The encodings to try if the string doesn't have a valid encoding, before resort to the detection of
+      #   `rchardet19` library
       # @return self
       def fix_encoding!(try_encodings: PRIORITY_ENCODINGS)
         if encoding.to_s =~ /^iso-8859-/i
@@ -55,7 +55,6 @@ module Extensions
         encode! encoding
         self
       end
-
     end
   end
 end

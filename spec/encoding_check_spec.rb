@@ -10,7 +10,7 @@ RSpec.describe Extensions::String::EncodingCheck do
       [Encoding::UTF_8, Encoding::ISO_8859_1].each do |expected_encoding|
         context "given a #{string_encoding} string with #{expected_encoding} expected encoding" do
           is_required_fix = (string_encoding != expected_encoding)
-          it (is_required_fix ? "fix encoding to #{string_encoding}" : "don't fix encoding") do
+          it is_required_fix ? "fix encoding to #{string_encoding}" : "don't fix encoding" do
             str = "cioè".encode(string_encoding)
             str.force_encoding expected_encoding if is_required_fix
             expect(str.fix_encoding!.encoding).to eq(string_encoding)
