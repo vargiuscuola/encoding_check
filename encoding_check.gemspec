@@ -11,9 +11,9 @@ Gem::Specification.new do |spec|
   spec.summary       = "Minimal library to enforce string encoding"
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/vargiuscuola/encoding_check"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
 
-  #spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/vargiuscuola/encoding_check"
@@ -28,11 +28,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  #vs
-  spec.add_dependency 'rchardet19', '~> 1.3'
-  spec.add_dependency 'thor', '~> 1.1'
-  spec.add_development_dependency 'rspec', '~> 3.2'
-  spec.add_development_dependency 'rubocop', '~> 0.80'
-  spec.add_development_dependency 'cucumber', '~> 5.3'
-  spec.add_development_dependency 'aruba', '~> 1.0'
+  # Specific to this gem (added by Stefano)
+  spec.add_dependency "rchardet19", "~> 1.3"
+  spec.add_dependency "thor", "~> 1.1"
+  spec.add_development_dependency "aruba", "~> 1.0"
+  spec.add_development_dependency "cucumber", "~> 5.3"
+  spec.add_development_dependency "rspec", "~> 3.2"
+  spec.add_development_dependency "rubocop", "~> 1.9", ">= 1.9.1"
 end

@@ -7,17 +7,17 @@ gemspec
 
 gem "rake", "~> 13.0"
 
-=begin
-gem "rchardet19", "~> 1.3"
-gem "thor", "~> 1.3"
+if false    # not needed, see `gemspec` file
+  gem "rchardet19", "~> 1.3"
+  gem "thor", "~> 1.3"
 
-group :test do
-  gem 'rspec', '~> 3.0'
-end
+  group :test do
+    gem "rspec", "~> 3.0"
+  end
 
-group :development, :test do
-  gem 'rubocop', '~> 0.80'
-  gem 'cucumber', '~> 5.3'
-  gem 'aruba', '~> 1.0'
+  group :development, :test do
+    gem "aruba", "~> 1.0"
+    gem "cucumber", "~> 5.3"
+    gem "rubocop", "~> 0.80"
+  end
 end
-=end
