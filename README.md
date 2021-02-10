@@ -1,5 +1,9 @@
 # EncodingCheck
 
+<p align="left">
+  <a href="https://github.com/vargiuscuola/encoding_check"><img alt="encoding_check Rubocop Action Status" src="https://github.com/vargiuscuola/encoding_check/workflows/RubocopCheck/badge.svg"></a>
+</p>
+
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/encoding_check`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
