@@ -6,23 +6,28 @@ module Extensions
   module String
     # EncodingCheck
     module EncodingCheck
-      
-      PRIORITY_ENCODINGS = [ Encoding::ISO_8859_1 ]
+
+      PRIORITY_ENCODINGS = [Encoding::ISO_8859_1].freeze
       DEFAULT_ENCODING = Encoding::UTF_8
 
       class Error < StandardError; end
-      encoding = "UTF-8"
 
       # Fix encoding of a string
       #
-      # Fix encoding of a string if it doesn't have a valid encoding.
-      # If the string is encoded in `ISO-8859-<n>`, force its encoding to `UTF-8` if it's a valid `UTF-8` string.
+      # Force the encoding of a string to the most sensible value in my debatable opinion gained according to real
+      # everyday cases.
+      # If the string is declared as encoded in `ISO-8859-<n>` (which make it always formally valid), force its
+      # encoding to the default encoding `UTF-8` if it's a valid `UTF-8` string.
+      # Otherwise, if the string doesn't have a valid encoding, attempt to fix it trying first to force encoding to
+      # the priority encodings provided, and if those fail to be a valid encoding, the string is force encoded with
+      # the encoding detected by the `rchardet19` library.
       #
-      # @param [Array] try_encodings (optional)
-      #   The encodings to try if the string doesn't have a valid encoding, before resort to `rchardet19` library
+      # @param [Array<Encoding, String>] try_encodings (optional)
+      #   The encodings to try if the string doesn't have a valid encoding, before resort to the detection of `rchardet19` library
+      # @return self
       def fix_encoding!(try_encodings: PRIORITY_ENCODINGS)
         if encoding.to_s =~ /^iso-8859-/i
-          force_encoding(Encoding::UTF_8) if dup.force_encoding(Encoding::UTF_8).valid_encoding?
+          force_encoding(DEFAULT_ENCODING) if dup.force_encoding(DEFAULT_ENCODING).valid_encoding?
         elsif !valid_encoding?
           is_valid_encoding = try_encodings.find do |enc|
             force_encoding enc
@@ -41,10 +46,12 @@ module Extensions
       # @param [Encoding] encoding (optional)
       #   The encoding to ensure
       #
-      # @param [Array] try_encodings (optional)
-      #   The encodings to try in fixing the encoding with `fix_encoding!`
+      # @param [Array<Encoding, String>] try_encodings (optional)
+      #   The encodings to try in the attempt to fix the encoding with `fix_encoding!` method
+      # @return self
+      # (see #fix_encoding!)
       def ensure_encoding!(encoding: DEFAULT_ENCODING, try_encodings: PRIORITY_ENCODINGS)
-        fix_encoding!
+        fix_encoding!(try_encodings: try_encodings)
         encode! encoding
         self
       end
