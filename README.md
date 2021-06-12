@@ -24,7 +24,7 @@ See the [documentation](https://vargiuscuola.github.io/encoding_check/).
 
 ## Usage
 
-### From ruby code
+### From ruby
 
 Load the extension:
 
@@ -90,7 +90,9 @@ We can encode back to `UTF-8`:
 In the last command we could also have been used `str.encode Encoding::UTF_8` as we know the encoding is now correct being it already checked and eventually fixed by the previous command `ensure_encoding!`.
 
 
-### From console
+### From shell
+
+Probably not very useful, but here it is:
 
 ```sh
 $ encoding_check
