@@ -4,9 +4,7 @@
   <a href="https://github.com/vargiuscuola/encoding_check"><img alt="encoding_check Rake Task Action Status" src="https://github.com/vargiuscuola/encoding_check/workflows/RakeTask/badge.svg"></a>
 </p>
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/encoding_check`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Gem library to help ensure and/or fix encoding of a string.
 
 ## Installation
 
@@ -20,20 +18,76 @@ And then execute:
 
     $ bundle install
 
-Or install it yourself as:
-
-    $ gem install encoding_check
-
 ## Usage
 
-TODO: Write usage instructions here
+### From ruby code
 
-## Development
+Load the extension:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```irb
+> String.include Extensions::String::EncodingCheck
+ => String
+```
+ 
+then you call the methods `fix_encoding!` and `ensure_encoding!` on strings.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Let's suppose you have a string loaded from file or some other input with the wrong encoding:
 
-## Contributing
+```irb
+> str = "cioè".encode Encoding::UTF_8
+ => "cioè"
+> str = str.force_encoding Encoding::ISO_8859_1
+ => "cio\xC3\xA8"
+> str.encoding
+ => #<Encoding:ISO-8859-1>
+> str
+ => "cio\xC3\xA8"
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/vargiuscuola/encoding_check.
+The `UTF-8` string "cioè" is being wrongly interpreted as `ISO-8859-1`.
+If we try to encode back to `UTF-8` we get the wrong string:
+
+```irb
+> str.encode Encoding::UTF_8
+ => "cioÃ¨"
+```
+
+We can fix the encoding with the `fix_encoding!` method (see the documentation for a better explanation):
+ 
+```irb
+> str.fix_encoding!
+ => "cioè"
+> str.encoding
+ => #<Encoding:UTF-8>
+```
+
+We can ensure the encoding of a string (after eventually fix it if wrongly encoded) with the `ensure_encoding!` method (see the documentation for a better explanation):
+ 
+```irb
+> str = "cioè".encode Encoding::UTF_8
+ => "cioè"
+> str = str.force_encoding Encoding::ISO_8859_1
+> str.ensure_encoding! encoding: Encoding::ISO_8859_1
+ => "cio\xE8"
+```
+
+Now the string is correctly encoded as `ISO-8859-1`, also if rendered as `cio\xE8` instead of `cioè` only because of `irb` console only rendering the string as `UTF-8`.
+We can encode back to `UTF-8`:
+
+```irb
+> str.ensure_encoding! encoding: Encoding::UTF_8
+ => "cioè"
+```
+
+In the last command we could also have been used `str.encode Encoding::UTF_8` as we know the encoding is now correct being checked and eventually fixed by the previous command `ensure_encoding!`.
+
+
+### From console
+
+```sh
+$ encoding_check
+Commands:
+  encoding_check ensure FILE [ENCODING]  # Print the input file encoded in the provided encoding
+  encoding_check fix FILE                # Fix encoding of provided file
+  encoding_check help [COMMAND]          # Describe available commands or one specific command
+```
