@@ -20,7 +20,7 @@ And then execute:
 
 ## Documentation
 
-See the [documentation]<https://vargiuscuola.github.io/encoding_check/>.
+See the [documentation](https://vargiuscuola.github.io/encoding_check/).
 
 ## Usage
 
