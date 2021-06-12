@@ -67,6 +67,8 @@ We can fix the encoding with the `fix_encoding!` method (see the documentation f
  => #<Encoding:UTF-8>
 ```
 
+Please note that the `ISO-8859-1` encoded string being *fixed* doesn't contain invalid characters (any byte sequence is a valid `ISO-8859-1` string), and `String#valid_encoding?` would return `true`: in detecting and eventually fixing the encoding of the string, the `fix_encoding?` method make some assumption which could be wrong in some situation, but which works correctly in actual, real case scenarios I usually encounter. 
+
 We can ensure the encoding of a string (after eventually fix it if wrongly encoded) with the `ensure_encoding!` method (see the documentation for a better explanation):
  
 ```ruby
