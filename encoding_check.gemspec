@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = "encoding_check"
   spec.version       = Extensions::String::EncodingCheck::VERSION
   spec.authors       = ["Stefano Vargiu"]
-  spec.email         = ["vstefanoxx@gmail.com"]
+  spec.email         = ["stefano@vargiuscuola.it"]
 
   spec.summary       = "Minimal library to enforce string encoding"
   spec.description   = spec.summary
