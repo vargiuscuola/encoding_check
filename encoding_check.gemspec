@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Minimal library to enforce string encoding"
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/vargiuscuola/encoding_check"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
