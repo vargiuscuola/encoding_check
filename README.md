@@ -18,6 +18,10 @@ And then execute:
 
     $ bundle install
 
+## Documentation
+
+See the [documentation]<https://vargiuscuola.github.io/encoding_check/>.
+
 ## Usage
 
 ### From ruby code
