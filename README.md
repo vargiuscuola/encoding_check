@@ -34,7 +34,7 @@ irb
  => String
 ```
  
-then you call the methods `fix_encoding!` and `ensure_encoding!` on strings.
+then you call the `fix_encoding!` and `ensure_encoding!` methods on strings.
 
 Let's suppose you have a string loaded from file or some other input with the wrong encoding:
 
