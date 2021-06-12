@@ -81,7 +81,7 @@ We can encode back to `UTF-8`:
  => "cioè"
 ```
 
-In the last command we could also have been used `str.encode Encoding::UTF_8` as we know the encoding is now correct being checked and eventually fixed by the previous command `ensure_encoding!`.
+In the last command we could also have been used `str.encode Encoding::UTF_8` as we know the encoding is now correct being it already checked and eventually fixed by the previous command `ensure_encoding!`.
 
 
 ### From console
