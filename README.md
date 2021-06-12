@@ -73,7 +73,7 @@ We can ensure the encoding of a string (after eventually fix it if wrongly encod
  => "cio\xE8"
 ```
 
-Now the string is correctly encoded as `ISO-8859-1`, also if rendered as `cio\xE8` instead of `cioè` only because of `irb` console only rendering the string as `UTF-8`.
+Now the string is correctly encoded as `ISO-8859-1`, also if rendered as `cio\xE8` instead of `cioè` only because of `irb` console rendering the string as `UTF-8`.
 We can encode back to `UTF-8`:
 
 ```ruby
