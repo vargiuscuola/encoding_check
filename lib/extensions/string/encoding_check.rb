@@ -13,7 +13,7 @@ module Extensions
 
       # Fix encoding of a string
       #
-      # Force the encoding of a string to the most sensible value in my debatable opinion gained according to real
+      # Force the encoding of a string to the most sensible value in my debatable opinion gained according to actual
       # everyday cases.
       # If the string is declared as encoded in `ISO-8859-<n>` (which make it always formally valid), force its
       # encoding to the default encoding `UTF-8` if it's a valid `UTF-8` string.
