@@ -2,13 +2,13 @@
 
 ## v.0.2.0
 
-Alcune correzione in #fix_encoding!.
+* Some fixes in #fix_encoding!
 
 ## v0.1.0
 
-Primva versione.
+First release.
 
-Metodi:
+Methods:
 
 * #fix_encoding!
 * #ensure_encoding!
