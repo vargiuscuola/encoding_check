@@ -24,7 +24,8 @@ And then execute:
 
 Load the extension:
 
-```irb
+```ruby
+irb
 > String.include Extensions::String::EncodingCheck
  => String
 ```
@@ -33,7 +34,7 @@ then you call the methods `fix_encoding!` and `ensure_encoding!` on strings.
 
 Let's suppose you have a string loaded from file or some other input with the wrong encoding:
 
-```irb
+```ruby
 > str = "cioè".encode Encoding::UTF_8
  => "cioè"
 > str = str.force_encoding Encoding::ISO_8859_1
@@ -47,14 +48,14 @@ Let's suppose you have a string loaded from file or some other input with the wr
 The `UTF-8` string "cioè" is being wrongly interpreted as `ISO-8859-1`.
 If we try to encode back to `UTF-8` we get the wrong string:
 
-```irb
+```ruby
 > str.encode Encoding::UTF_8
  => "cioÃ¨"
 ```
 
 We can fix the encoding with the `fix_encoding!` method (see the documentation for a better explanation):
  
-```irb
+```ruby
 > str.fix_encoding!
  => "cioè"
 > str.encoding
@@ -63,7 +64,7 @@ We can fix the encoding with the `fix_encoding!` method (see the documentation f
 
 We can ensure the encoding of a string (after eventually fix it if wrongly encoded) with the `ensure_encoding!` method (see the documentation for a better explanation):
  
-```irb
+```ruby
 > str = "cioè".encode Encoding::UTF_8
  => "cioè"
 > str = str.force_encoding Encoding::ISO_8859_1
@@ -74,7 +75,7 @@ We can ensure the encoding of a string (after eventually fix it if wrongly encod
 Now the string is correctly encoded as `ISO-8859-1`, also if rendered as `cio\xE8` instead of `cioè` only because of `irb` console only rendering the string as `UTF-8`.
 We can encode back to `UTF-8`:
 
-```irb
+```ruby
 > str.ensure_encoding! encoding: Encoding::UTF_8
  => "cioè"
 ```
